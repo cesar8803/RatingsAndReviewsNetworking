@@ -6,7 +6,7 @@ s.summary      = "Pod para el apoyo de consultas a servicio de Ratings and Revie
 
 s.description  = "Pod de ayuda para consultar, crear y enviar información a servicio en cargado del modulo de Ratings and Reviews, el cual será utilizado por las dos grandes aplicacione sde Liverpool, ShoppingApp y SellerApp"
 
-s.homepage     = "https://github.com/cesar8803/RatingsAndReviewsNetworking"
+s.homepage     = "https://www.liverpool.com.mx"
 # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 #s.license      = "MIT"
