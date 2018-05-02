@@ -17,10 +17,10 @@ public class TestService
     {
         return "Funcion de prueba del framework del pod creado"
     }
-    public static func doSometingTestChangesRepo() -> String
+    public static func doSomething3()->String
     {
-        print("listo")
-        return "listo"
+        print("Test")
+        return "Funcion de prueba del framework del pod creado"
     }
-    
+
 }
