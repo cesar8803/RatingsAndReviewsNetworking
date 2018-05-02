@@ -17,4 +17,10 @@ public class TestService
     {
         return "Funcion de prueba del framework del pod creado"
     }
+    public static func doSometingTestChangesRepo() -> String
+    {
+        print("listo")
+        return "listo"
+    }
+    
 }
