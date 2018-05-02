@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28C3DFF420998A340017E2C6 /* RatingsAndReviewsNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 28C3DFF220998A330017E2C6 /* RatingsAndReviewsNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28C3DFFD209994A30017E2C6 /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C3DFFC209994A30017E2C6 /* TestService.swift */; };
 		2C134F2839D5A80C33D1B324 /* Pods_RatingsAndReviewsNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFC9ED08FFC9246BB7A6E3A /* Pods_RatingsAndReviewsNetworking.framework */; };
 /* End PBXBuildFile section */
 
@@ -15,6 +16,7 @@
 		28C3DFEF20998A330017E2C6 /* RatingsAndReviewsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RatingsAndReviewsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C3DFF220998A330017E2C6 /* RatingsAndReviewsNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingsAndReviewsNetworking.h; sourceTree = "<group>"; };
 		28C3DFF320998A340017E2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C3DFFC209994A30017E2C6 /* TestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestService.swift; sourceTree = "<group>"; };
 		3AFC9ED08FFC9246BB7A6E3A /* Pods_RatingsAndReviewsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RatingsAndReviewsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		780776CC5E7BEA15AA960C31 /* Pods-RatingsAndReviewsNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RatingsAndReviewsNetworking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RatingsAndReviewsNetworking/Pods-RatingsAndReviewsNetworking.debug.xcconfig"; sourceTree = "<group>"; };
 		7B962ED85FB1812ACF48FF82 /* Pods-RatingsAndReviewsNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RatingsAndReviewsNetworking.release.xcconfig"; path = "Pods/Target Support Files/Pods-RatingsAndReviewsNetworking/Pods-RatingsAndReviewsNetworking.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				28C3DFF220998A330017E2C6 /* RatingsAndReviewsNetworking.h */,
 				28C3DFF320998A340017E2C6 /* Info.plist */,
+				28C3DFFC209994A30017E2C6 /* TestService.swift */,
 			);
 			path = RatingsAndReviewsNetworking;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28C3DFFD209994A30017E2C6 /* TestService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
