@@ -6,5 +6,7 @@ target 'RatingsAndReviewsNetworking' do
   use_frameworks!
 
   # Pods for RatingsAndReviewsNetworking
+  pod 'Alamofire', '~> 4.0'
+  pod 'AlamofireObjectMapper', '~> 4.0'
 
 end

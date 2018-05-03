@@ -22,5 +22,12 @@ public class TestService
         print("Test")
         return "Funcion de prueba del framework del pod creado"
     }
+    
+    private static func funcionPrivada()
+    {
+        let string = "Aqui esta la prueba"
+        
+        print("Aqui se imprime \(string)")
+    }
 
 }
