@@ -1,12 +1,20 @@
-# Uncomment the next line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.1'
+use_frameworks!
+
+def shared_pods
+    pod 'Alamofire', '~> 4.0'
+    pod 'AlamofireObjectMapper', '~> 4.0'
+end
 
 target 'RatingsAndReviewsNetworking' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+  shared_pods
+end
 
-  # Pods for RatingsAndReviewsNetworking
-  pod 'Alamofire', '~> 4.0'
-  pod 'AlamofireObjectMapper', '~> 4.0'
-
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.2'
+    end
+  end
 end

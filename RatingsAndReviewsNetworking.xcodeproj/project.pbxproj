@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		286B2FA3209B583B00EFFB43 /* TurnToService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286B2FA2209B583B00EFFB43 /* TurnToService.swift */; };
+		286B2FA7209B791700EFFB43 /* TurnToConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286B2FA6209B791700EFFB43 /* TurnToConfig.swift */; };
+		286B2FA9209B85F600EFFB43 /* TurnToRouterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286B2FA8209B85F600EFFB43 /* TurnToRouterRequest.swift */; };
+		286B2FAB209BACDC00EFFB43 /* TurnToUtilsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286B2FAA209BACDC00EFFB43 /* TurnToUtilsExtension.swift */; };
 		28C3DFF420998A340017E2C6 /* RatingsAndReviewsNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 28C3DFF220998A330017E2C6 /* RatingsAndReviewsNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28C3DFFD209994A30017E2C6 /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C3DFFC209994A30017E2C6 /* TestService.swift */; };
 		2C134F2839D5A80C33D1B324 /* Pods_RatingsAndReviewsNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFC9ED08FFC9246BB7A6E3A /* Pods_RatingsAndReviewsNetworking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		286B2FA2209B583B00EFFB43 /* TurnToService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToService.swift; sourceTree = "<group>"; };
+		286B2FA6209B791700EFFB43 /* TurnToConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToConfig.swift; sourceTree = "<group>"; };
+		286B2FA8209B85F600EFFB43 /* TurnToRouterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToRouterRequest.swift; sourceTree = "<group>"; };
+		286B2FAA209BACDC00EFFB43 /* TurnToUtilsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToUtilsExtension.swift; sourceTree = "<group>"; };
 		28C3DFEF20998A330017E2C6 /* RatingsAndReviewsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RatingsAndReviewsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C3DFF220998A330017E2C6 /* RatingsAndReviewsNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingsAndReviewsNetworking.h; sourceTree = "<group>"; };
 		28C3DFF320998A340017E2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +66,10 @@
 				28C3DFF220998A330017E2C6 /* RatingsAndReviewsNetworking.h */,
 				28C3DFF320998A340017E2C6 /* Info.plist */,
 				28C3DFFC209994A30017E2C6 /* TestService.swift */,
+				286B2FA2209B583B00EFFB43 /* TurnToService.swift */,
+				286B2FAA209BACDC00EFFB43 /* TurnToUtilsExtension.swift */,
+				286B2FA6209B791700EFFB43 /* TurnToConfig.swift */,
+				286B2FA8209B85F600EFFB43 /* TurnToRouterRequest.swift */,
 			);
 			path = RatingsAndReviewsNetworking;
 			sourceTree = "<group>";
@@ -181,7 +193,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				286B2FA9209B85F600EFFB43 /* TurnToRouterRequest.swift in Sources */,
 				28C3DFFD209994A30017E2C6 /* TestService.swift in Sources */,
+				286B2FA3209B583B00EFFB43 /* TurnToService.swift in Sources */,
+				286B2FAB209BACDC00EFFB43 /* TurnToUtilsExtension.swift in Sources */,
+				286B2FA7209B791700EFFB43 /* TurnToConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +356,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RatingsAndReviewsNetworking/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-                IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mx.com.liverpool.RatingsAndReviewsNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
