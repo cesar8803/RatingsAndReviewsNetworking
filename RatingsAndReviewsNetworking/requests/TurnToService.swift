@@ -18,9 +18,9 @@ public class TurnToService
     /**
      Unica peticion generica para ser utilizada en todas las llamadas al servicio de TurnTo
     */
-    public static func callServiceWith<T:TurnToGeneric, U:Mappable>(typeRequest:TurnToServiceRequest, params:T, completion:@escaping (_ dataResponse:U) -> Void, errorCompletion:@escaping (_ errorString:String)->Void)
+    public static func callServiceWith<T:Mappable>(typeRequest:URLRequestConvertible, completion:@escaping (_ dataResponse:T) -> Void, errorCompletion:@escaping (_ errorString:String)->Void)
     {
-        Alamofire.request(typeRequest as! URLRequestConvertible).responseObject { (response:DataResponse<U>) in
+        Alamofire.request(typeRequest).responseObject { (response:DataResponse<T>) in
             if response.result.isSuccess
             {
                 let responseService = response.result.value

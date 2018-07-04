@@ -8,37 +8,12 @@
 
 import Foundation
 
-public protocol TurnToBase
+/**************
+ Protocolos de los obtejos para armas los parametros
+ requeridos para las peticiones a los servicios
+ *********************/
+public protocol TurnToGeneric
 {
     func getDict()->[String:Any]
 }
 
-public protocol TurnToGeneric:TurnToBase
-{
-    var idReview:String? {get set}
-}
-
-public struct TurnToObjListReview:TurnToGeneric
-{
-    //Base
-    public var idReview: String?
-    
-    //Propias
-    public var sku:String
-    
-    public init(sku:String)
-    {
-        self.sku = sku
-    }
-    
-    public func getDict() -> [String : Any]
-    {
-        let dict:[String:Any] = [
-            "sku": self.sku
-        ]
-        //
-        return dict
-    }
-}
-
-//public strucn TurnToObjDetailreview:T
