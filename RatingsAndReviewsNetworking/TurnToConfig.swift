@@ -60,12 +60,17 @@ public class TurnToConfig
 {
     public static let sharedInstance = TurnToConfig()
     
-    private var _turntoApiVersion:String = "v1.1"
-    private var _turntoEndpoint:String = "https://api.turnto.com"
-    private var _timeOutInterval:Double = 60.0
+    private var _turntoApiVersion   : String = "v1.1"
+    private var _turntoEndpoint     : String = "https://api.turnto.com"
+    private var _timeOutInterval    : Double = 60.0
+    private var _headerField        : String = "Authorization"
+    private var _accesApiToken      : String = "bearer zgIFq2mmCoZE7tbOwWrCcw9w2Zded47MzXm"
     
     private init(){}
     
+    /**
+     Versión del API de TurnTo a utilizar
+    */
     public var turntoApiVersion:String
     {
         set{
@@ -76,6 +81,9 @@ public class TurnToConfig
         }
     }
     
+    /**
+     Liga de donde se conectará al API de TurnTo
+    */
     public var turntoEndpoint:String
     {
         set{
@@ -86,6 +94,9 @@ public class TurnToConfig
         }
     }
     
+    /**
+     Tiempo de espera máximo para cada request ejecutado
+    */
     public var timeOutInterval:Double
     {
         set{
@@ -95,4 +106,31 @@ public class TurnToConfig
             return _timeOutInterval
         }
     }
+    
+    /**
+     Cabecera de Autorización para permisos de peticion del API de TurnTo
+    */
+    public var headerField:String
+    {
+        set{
+            _headerField = newValue
+        }
+        get{
+            return _headerField
+        }
+    }
+    
+    /**
+     Token de acceso al API de TurnTo
+    */
+    public var accesApiToken:String
+    {
+        set{
+            _accesApiToken = newValue
+        }
+        get{
+            return _accesApiToken
+        }
+    }
+    
 }

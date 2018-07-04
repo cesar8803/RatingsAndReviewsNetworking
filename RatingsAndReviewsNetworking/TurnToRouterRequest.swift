@@ -16,7 +16,7 @@ internal enum TurnToRouterRequest:URLRequestConvertible
     case accessToken
     case invalidateAccessToken
     //ReviewsType
-    case reviewsList(idReview:String)
+    case reviewsList(params:[String:Any])
     case reviewDetail(idReview:String)
     case createReview(params:[String:Any])
     case voteUp(idReview:String)
@@ -58,7 +58,9 @@ internal enum TurnToRouterRequest:URLRequestConvertible
                 return nil
             case .invalidateAccessToken:
                 return nil
-            case .reviewsList, .reviewDetail:
+            case .reviewsList(let params):
+                return params
+            case .reviewDetail:
                 return nil
             case .createReview(let params):
                 return params
@@ -83,8 +85,8 @@ internal enum TurnToRouterRequest:URLRequestConvertible
                 relativePath = TurnToContextService.accessToken.url
             case .invalidateAccessToken:
                 relativePath = TurnToContextService.invalidateAccessToken.url
-            case .reviewsList(let idReview):
-                relativePath = TurnToContextService.reviewsList.url.stringTo(replace: "#idReview#", withValidString: idReview)
+            case .reviewsList:
+                relativePath = TurnToContextService.reviewsList.url
             case .reviewDetail(let idReview):
                 relativePath = TurnToContextService.reviewDetail.url.stringTo(replace: "#idReview#", withValidString: idReview)
             case .createReview:
@@ -119,8 +121,19 @@ internal enum TurnToRouterRequest:URLRequestConvertible
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         urlRequest.timeoutInterval = TurnToConfig.sharedInstance.timeOutInterval
+        urlRequest.setValue(TurnToConfig.sharedInstance.accesApiToken, forHTTPHeaderField: TurnToConfig.sharedInstance.headerField)
+        //urlRequest.setValue("xxx", forHTTPHeaderField: "Authorization")
         //
+        let encoding: ParameterEncoding = {
+            switch self {
+            case .createReview, .markAsInappropiate:
+                return JSONEncoding.default
+            default:
+                return URLEncoding.default
+            }
+        }()
         
-        return try! Alamofire.URLEncoding.default.encode(urlRequest, with: params)
+        return try encoding.encode(urlRequest, with: params)
+        //return try! Alamofire.URLEncoding.default.encode(urlRequest, with: params)
     }
 }
