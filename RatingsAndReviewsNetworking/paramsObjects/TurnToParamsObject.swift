@@ -76,6 +76,7 @@ public struct TurnToObjAskSku:TurnToGeneric
     
     public init(skuList:[String])
     {
+        self.sku = ""
         self.skuList = skuList
         //
         for (index, item) in self.skuList.enumerated()
@@ -102,7 +103,7 @@ public struct TurnToObjCreateReview:TurnToGeneric
     
     
     public func getDict() -> [String : Any] {
-        
+        return [:]
     }
 }
 
@@ -112,7 +113,7 @@ public struct TurnToUpdateProduct:TurnToGeneric
     
     public func getDict() -> [String : Any]
     {
-        
+        return [:]
     }
 }
 
