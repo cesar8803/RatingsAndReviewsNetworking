@@ -60,11 +60,17 @@ public class TurnToConfig
 {
     public static let sharedInstance = TurnToConfig()
     
-    private var _turntoApiVersion   : String = "v1.1"
-    private var _turntoEndpoint     : String = "https://api.turnto.com"
-    private var _timeOutInterval    : Double = 60.0
-    private var _headerField        : String = "Authorization"
-    private var _accesApiToken      : String = "bearer zgIFq2mmCoZE7tbOwWrCcw9w2Zded47MzXm"
+    private var _turntoApiVersion       : String = "v1.1"
+    private var _turntoEndpoint         : String = "https://api.turnto.com"
+    private var _timeOutInterval        : Double = 60.0
+    private var _headerField            : String = "Authorization"
+    private var _accesApiToken          : String = "bearer LSZVtMUo183hGgNiNPaoVRz96iERW1P364gs"
+    //
+    //Valores Constantes proporcionados por TurnTo para obtener Token
+    private var _client_id              : String = "euMikXTjfROYykrsite"
+    private var _client_secret          : String = "xxU5qQRa7DcL53T5W65YvfdryLuCauth"
+    private var _grant_type             : String = "client_credentials"
+    private var _max_try_get_request    : Int = 2
     
     private init(){}
     
@@ -133,4 +139,46 @@ public class TurnToConfig
         }
     }
     
+    /********
+     Configuracion de Credenciales para bbtención de Token
+    ******************/
+    public var client_id:String
+    {
+        set{
+            _client_id = newValue
+        }
+        get{
+            return _client_id
+        }
+    }
+    
+    public var client_secret:String
+    {
+        set{
+            _client_secret = newValue
+        }
+        get{
+            return _client_secret
+        }
+    }
+    
+    public var grant_type:String
+    {
+        set{
+            _grant_type = newValue
+        }
+        get{
+            return _grant_type
+        }
+    }
+    
+    public var max_try_get_request:Int
+    {
+        set{
+            _max_try_get_request = newValue
+        }
+        get{
+            return _max_try_get_request
+        }
+    }
 }

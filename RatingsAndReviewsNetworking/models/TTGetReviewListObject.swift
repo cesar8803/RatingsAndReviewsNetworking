@@ -14,12 +14,12 @@ import ObjectMapper
  *********************/
 public class TTGetReviewListObject:Mappable
 {
-    var reviews     : [TTReviewsObject]?
-    var offset      : Int?
-    var limit       : Int?
-    var total       : Int?
-    var errors      : [TTErrorObject]?
-    var filters     : TTFilters?
+    public var reviews     : [TTReviewsObject]?
+    public var offset      : Int?
+    public var limit       : Int?
+    public var total       : Int?
+    public var errors      : [TTErrorObject]?
+    public var filters     : TTFilters?
     
     required public init?(map: Map)
     {
@@ -38,10 +38,10 @@ public class TTGetReviewListObject:Mappable
 
 public class TTFilters:Mappable
 {
-    var attributes      : [TTAttributes]?
-    var dimensions      : [TTDimensions]?
-    var userSettings    : TTUserSettings?
-    var rating          : [TTRating]?
+    public var attributes      : [TTAttributes]?
+    public var dimensions      : [TTDimensions]?
+    public var userSettings    : TTUserSettings?
+    public var rating          : [TTRating]?
     
     required public init?(map: Map)
     {
@@ -61,32 +61,32 @@ public class TTFilters:Mappable
  *********************/
 public class TTReviewsObject:Mappable
 {
-    var idReview            : Int?
-    var localeReview        : String?
-    var rating              : Int?
-    var titleReview         : String?
-    var textReview          : String?
-    var textLength          : Int?
-    var csFlag              : Bool?
-    var inappropriateFlag   : Bool?
-    var reviewedFlag        : Bool?
-    var autoModerated       : Bool?
-    var published           : Bool?
-    var incentivized        : Bool?
-    var upVotes             : Int?
-    var downVotes           : Int?
-    var orderId             : Int?
-    var catalogItems        : [TTCatalogItems]?
-    var dimensions          : [TTDimensions]?
-    var media               : TTMedia?
-    var responses           : [TTResponse]?
-    var reviewedDate        : String?
-    var purchaseDate        : String?
-    var tags                : [String]?
-    var syndication         : String?
-    var dateCreated         : String?
-    var user                : TTUserReview?
-    var errors              : [TTErrorObject]?
+    public var idReview            : Int?
+    public var localeReview        : String?
+    public var rating              : Int?
+    public var titleReview         : String?
+    public var textReview          : String?
+    public var textLength          : Int?
+    public var csFlag              : Bool?
+    public var inappropriateFlag   : Bool?
+    public var reviewedFlag        : Bool?
+    public var autoModerated       : Bool?
+    public var published           : Bool?
+    public var incentivized        : Bool?
+    public var upVotes             : Int?
+    public var downVotes           : Int?
+    public var orderId             : Int?
+    public var catalogItems        : [TTCatalogItems]?
+    public var dimensions          : [TTDimensions]?
+    public var media               : TTMedia?
+    public var responses           : [TTResponse]?
+    public var reviewedDate        : String?
+    public var purchaseDate        : String?
+    public var tags                : [String]?
+    public var syndication         : String?
+    public var dateCreated         : String?
+    public var user                : TTUserReview?
+    public var errors              : [TTErrorObject]?
 
     required public init?(map: Map)
     {
@@ -118,15 +118,16 @@ public class TTReviewsObject:Mappable
         syndication         <- map["syndication"]
         dateCreated         <- map["dateCreated"]
         user                <- map["user"]
+        errors              <- map["errors"]
     }
 }
 
 public class TTResponse:Mappable
 {
-    var textResponse    : String?
-    var locale          : String?
-    var user            : TTUserReview?
-    var dateCreated     : String?
+    public var textResponse    : String?
+    public var locale          : String?
+    public var user            : TTUserReview?
+    public var dateCreated     : String?
     
     required public init?(map: Map)
     {
@@ -143,7 +144,7 @@ public class TTResponse:Mappable
 
 public class TTUserSettings:Mappable
 {
-    var shopperProfiles     : [TTShopperProfiles]?
+    public var shopperProfiles     : [TTShopperProfiles]?
     
     required public init?(map: Map)
     {
@@ -157,9 +158,9 @@ public class TTUserSettings:Mappable
 
 public class TTRating:Mappable
 {
-    var valueR      : Int?
-    var countR      : Int?
-    var filter      : String?
+    public var valueR      : Int?
+    public var countR      : Int?
+    public var filter      : String?
     
     required public init?(map: Map)
     {
@@ -175,16 +176,16 @@ public class TTRating:Mappable
 
 public class TTDimensions:Mappable
 {
-    var type            : Int?
-    var dimensionId     : Int?
-    var dimensionLabel  : String?
-    var valueDimension  : Int?
-    var onlyLabel       : [String]?
+    public var type            : Int?
+    public var dimensionId     : Int?
+    public var dimensionLabel  : String?
+    public var valueDimension  : Int?
+    public var onlyLabel       : [String]?
     
-    var values          : [TTValues]?
-    var sortOrder       : Int?
-    var name            : String?
-    var required        : Bool?
+    public var values          : [TTValues]?
+    public var sortOrder       : Int?
+    public var name            : String?
+    public var required        : Bool?
     
     required public init?(map: Map)
     {
@@ -207,8 +208,8 @@ public class TTDimensions:Mappable
 
 public class TTMedia:Mappable
 {
-    var photo   : [TTPhotoVideo]?
-    var video   : [TTPhotoVideo]?
+    public var photo   : [TTPhotoVideo]?
+    public var video   : [TTPhotoVideo]?
     
     required public init?(map: Map)
     {
@@ -223,28 +224,28 @@ public class TTMedia:Mappable
 
 public class TTPhotoVideo:Mappable
 {
-    var mediaId         : Int?
-    var mediaType       : String?
-    var imageType       : String?
-    var normalUrl       : String?
-    var caption         : String?
-    var provider        : String?
-    var providedLink    : String?
-    var thumbnailUrl    : String?
-    var thumbnailWidth  : Int?
-    var thumbnailHeight : Int?
-    var widthM          : Int?
-    var heightM         : Int?
-    var authorName      : String?
-    var authorUrl       : String?
-    var providerId      : String?
-    var htmlEmbed       : String?
-    var s88thumbDims    : TTThumbDims?
-    var s64thumbDims    : TTThumbDims?
-    var locale          : String?
-    var published       : String?
-    var dateCreated     : String?
-    var tags            : [String]?
+    public var mediaId         : Int?
+    public var mediaType       : String?
+    public var imageType       : String?
+    public var normalUrl       : String?
+    public var caption         : String?
+    public var provider        : String?
+    public var providedLink    : String?
+    public var thumbnailUrl    : String?
+    public var thumbnailWidth  : Int?
+    public var thumbnailHeight : Int?
+    public var widthM          : Int?
+    public var heightM         : Int?
+    public var authorName      : String?
+    public var authorUrl       : String?
+    public var providerId      : String?
+    public var htmlEmbed       : String?
+    public var s88thumbDims    : TTThumbDims?
+    public var s64thumbDims    : TTThumbDims?
+    public var locale          : String?
+    public var published       : String?
+    public var dateCreated     : String?
+    public var tags            : [String]?
     
     
     required public init?(map: Map)
@@ -280,11 +281,11 @@ public class TTPhotoVideo:Mappable
 
 public class TTThumbDims:Mappable
 {
-    var widthT      : Int?
-    var heightT     : Int?
-    var scaledTo    : String?
-    var targetLeft  : Int?
-    var targetTop   : Int?
+    public var widthT      : Int?
+    public var heightT     : Int?
+    public var scaledTo    : String?
+    public var targetLeft  : Int?
+    public var targetTop   : Int?
     
     required public init?(map: Map)
     {
@@ -302,17 +303,17 @@ public class TTThumbDims:Mappable
 
 public class TTUserReview:Mappable
 {
-    var nickName        : String?
-    var firstName       : String?
-    var lastName        : String?
-    var emailAddress    : String?
-    var externalId      : Int?
-    var city            : String?
-    var state           : String?
-    var country         : String?
-    var ageRange        : Int?
-    var badge           : TTBagde?
-    var shopperProfiles : [TTShopperProfiles]?
+    public var nickName        : String?
+    public var firstName       : String?
+    public var lastName        : String?
+    public var emailAddress    : String?
+    public var externalId      : Int?
+    public var city            : String?
+    public var state           : String?
+    public var country         : String?
+    public var ageRange        : Int?
+    public var badge           : TTBagde?
+    public var shopperProfiles : [TTShopperProfiles]?
     
     required public init?(map: Map)
     {
@@ -335,8 +336,8 @@ public class TTUserReview:Mappable
 
 public class TTBagde:Mappable
 {
-    var textBadge   : String?
-    var imageUrl    : String?
+    public var textBadge   : String?
+    public var imageUrl    : String?
     
     required public init?(map: Map)
     {
@@ -351,14 +352,14 @@ public class TTBagde:Mappable
 
 public class TTShopperProfiles:Mappable
 {
-    var idShopper                   : Int?
-    var values                      : [TTValues]?
-    var displayPublic               : Bool?
-    var nameS                       : String?
-    var labelS                      : String?
-    var collectDuringContentSubmit  : Bool?
-    var required                    : Bool?
-    var type                        : Int?
+    public var idShopper                   : Int?
+    public var values                      : [TTValues]?
+    public var displayPublic               : Bool?
+    public var nameS                       : String?
+    public var labelS                      : String?
+    public var collectDuringContentSubmit  : Bool?
+    public var required                    : Bool?
+    public var type                        : Int?
     
     required public init?(map: Map)
     {
@@ -379,15 +380,15 @@ public class TTShopperProfiles:Mappable
 
 public class TTCatalogItems:Mappable
 {
-    var sku             : String?
-    var titleItem       : String?
-    var url             : String?
-    var category        : String?
-    var reviewCount     : Int?
-    var ratingCount     : Int?
-    var averageRating   : Float?
-    var ratingBreakdown : TTRatingBreakdown?
-    var attributes      : [TTAttributes]?
+    public var sku             : String?
+    public var titleItem       : String?
+    public var url             : String?
+    public var category        : String?
+    public var reviewCount     : Int?
+    public var ratingCount     : Int?
+    public var averageRating   : Float?
+    public var ratingBreakdown : TTRatingBreakdown?
+    public var attributes      : [TTAttributes]?
     
     
     
@@ -411,9 +412,9 @@ public class TTCatalogItems:Mappable
 
 public class TTAttributes:Mappable
 {
-    var type        : String?
-    var typeLabel   : String?
-    var values      : [TTValues]?
+    public var type        : String?
+    public var typeLabel   : String?
+    public var values      : [TTValues]?
     
     required public init?(map: Map)
     {
@@ -429,13 +430,13 @@ public class TTAttributes:Mappable
 
 public class TTValues:Mappable
 {
-    var valueLabel  : String?
-    var value       : String?
+    public var valueLabel  : String?
+    public var value       : String?
     
-    var idValue     : Int?
-    var countV      : Int?
-    var sortOrder   : String?
-    var filter      : String?
+    public var idValue     : Int?
+    public var countV      : Int?
+    public var sortOrder   : String?
+    public var filter      : String?
     
     required public init?(map: Map)
     {
@@ -456,11 +457,11 @@ public class TTValues:Mappable
 
 public class TTRatingBreakdown:Mappable
 {
-    var uno     : Int?
-    var dos     : Int?
-    var tres    : Int?
-    var cuatro  : Int?
-    var cinco   : Int?
+    public var uno     : Int?
+    public var dos     : Int?
+    public var tres    : Int?
+    public var cuatro  : Int?
+    public var cinco   : Int?
     
     required public init?(map: Map)
     {
@@ -481,8 +482,8 @@ public class TTRatingBreakdown:Mappable
  *********************/
 public class TTErrorObject:Mappable
 {
-    var message : String?
-    var code    : Int?
+    public var message : String?
+    public var code    : Int?
     
     required public init?(map: Map)
     {

@@ -12,21 +12,21 @@ import Alamofire
 public enum TurnToRouterRequest:URLRequestConvertible
 {
     //AuthType
-    case accessToken(params:TurnToGeneric)//(params:[String:Any])
-    case invalidateAccessToken(params:TurnToGeneric)//(params:[String:Any])
+    case accessToken(params:TurnToGeneric)
+    case invalidateAccessToken(params:TurnToGeneric)
     //ReviewsType
-    case reviewsList(params:TurnToGeneric)//(params:[String:Any])
+    case reviewsList(params:TurnToGeneric)
     case reviewDetail(idReview:String)
-    case createReview(params:TurnToGeneric)//(params:[String:Any])
+    case createReview(params:TurnToGeneric)
     case voteUp(idReview:String)
     case voteDown(idReview:String)
     case markAsInappropiate(idReview:String)
     //SettingsType
     case settings
     //ProductsType
-    case productList(params:TurnToGeneric)//(params:[String:Any])
-    case ugcSummary(params:TurnToGeneric)//(params:[String:Any])
-    case updateProduct(params:TurnToGeneric)//(params:[String:Any])
+    case productList(params:TurnToGeneric)
+    case ugcSummary(params:TurnToGeneric)
+    case updateProduct(params:TurnToGeneric)
     
     public func asURLRequest() throws -> URLRequest
     {
@@ -115,7 +115,6 @@ public enum TurnToRouterRequest:URLRequestConvertible
         urlRequest.httpMethod = method.rawValue
         urlRequest.timeoutInterval = TurnToConfig.sharedInstance.timeOutInterval
         urlRequest.setValue(TurnToConfig.sharedInstance.accesApiToken, forHTTPHeaderField: TurnToConfig.sharedInstance.headerField)
-        //urlRequest.setValue("xxx", forHTTPHeaderField: "Authorization")
         //
         let encoding: ParameterEncoding = {
             switch self {
@@ -125,8 +124,7 @@ public enum TurnToRouterRequest:URLRequestConvertible
                 return URLEncoding.default
             }
         }()
-        
+        //
         return try encoding.encode(urlRequest, with: params)
-        //return try! Alamofire.URLEncoding.default.encode(urlRequest, with: params)
     }
 }

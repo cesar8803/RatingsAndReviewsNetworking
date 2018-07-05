@@ -17,13 +17,28 @@ class TTGetAccessTokenObject: Mappable
     var token_type      : String?
     var access_token    : String?
     var errors          : [TTErrorObject]?
+    //
     required init?(map: Map){
     }
     
-    func mapping(map: Map) {
+    func mapping(map: Map)
+    {
         token_type      <- map["token_type"]
         access_token    <- map["access_token"]
         errors          <- map["errors"]
     }
 }
 
+class TTInvalidateAccessTokenObject:Mappable
+{
+    var errors          : [TTErrorObject]?
+    //
+    required init?(map: Map)
+    {
+    }
+    
+    func mapping(map: Map)
+    {
+        errors          <- map["errors"]
+    }
+}
