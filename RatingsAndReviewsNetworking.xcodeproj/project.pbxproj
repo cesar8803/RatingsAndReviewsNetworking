@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2812497520EDAA1900743841 /* TTGetReviewListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2812497420EDAA1900743841 /* TTGetReviewListObject.swift */; };
+		2812497720EDBEC900743841 /* TTSessIonsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2812497620EDBEC900743841 /* TTSessIonsObject.swift */; };
 		2847955020ED35AE00F07C00 /* TurnToGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2847954F20ED35AE00F07C00 /* TurnToGeneric.swift */; };
 		2847955B20ED60E400F07C00 /* TurnToParamsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2847955A20ED60E400F07C00 /* TurnToParamsObject.swift */; };
 		286B2FA3209B583B00EFFB43 /* TurnToService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286B2FA2209B583B00EFFB43 /* TurnToService.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2812497420EDAA1900743841 /* TTGetReviewListObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetReviewListObject.swift; sourceTree = "<group>"; };
+		2812497620EDBEC900743841 /* TTSessIonsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSessIonsObject.swift; sourceTree = "<group>"; };
 		2847954F20ED35AE00F07C00 /* TurnToGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToGeneric.swift; sourceTree = "<group>"; };
 		2847955A20ED60E400F07C00 /* TurnToParamsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToParamsObject.swift; sourceTree = "<group>"; };
 		286B2FA2209B583B00EFFB43 /* TurnToService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnToService.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		2847955720ED5F5D00F07C00 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				2812497420EDAA1900743841 /* TTGetReviewListObject.swift */,
+				2812497620EDBEC900743841 /* TTSessIonsObject.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -236,7 +242,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2812497520EDAA1900743841 /* TTGetReviewListObject.swift in Sources */,
 				2847955B20ED60E400F07C00 /* TurnToParamsObject.swift in Sources */,
+				2812497720EDBEC900743841 /* TTSessIonsObject.swift in Sources */,
 				2847955020ED35AE00F07C00 /* TurnToGeneric.swift in Sources */,
 				286B2FA9209B85F600EFFB43 /* TurnToRouterRequest.swift in Sources */,
 				286B2FA3209B583B00EFFB43 /* TurnToService.swift in Sources */,

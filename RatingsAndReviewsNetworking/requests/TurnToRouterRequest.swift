@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-internal enum TurnToRouterRequest:URLRequestConvertible
+public enum TurnToRouterRequest:URLRequestConvertible
 {
     //AuthType
     case accessToken(params:TurnToGeneric)//(params:[String:Any])
@@ -28,7 +28,7 @@ internal enum TurnToRouterRequest:URLRequestConvertible
     case ugcSummary(params:TurnToGeneric)//(params:[String:Any])
     case updateProduct(params:TurnToGeneric)//(params:[String:Any])
     
-    func asURLRequest() throws -> URLRequest
+    public func asURLRequest() throws -> URLRequest
     {
         //Método
         var method:HTTPMethod
