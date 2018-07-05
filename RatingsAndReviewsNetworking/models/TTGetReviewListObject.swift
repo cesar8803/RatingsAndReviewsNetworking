@@ -12,7 +12,7 @@ import ObjectMapper
 /*********
  Objetos de respuesta para listado de Reviews
  *********************/
-class TTGetReviewListObject:Mappable
+public class TTGetReviewListObject:Mappable
 {
     var reviews     : [TTReviewsObject]?
     var offset      : Int?
@@ -21,11 +21,11 @@ class TTGetReviewListObject:Mappable
     var errors      : [TTErrorObject]?
     var filters     : TTFilters?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         reviews     <- map["reviews"]
         offset      <- map["offset"]
@@ -36,18 +36,18 @@ class TTGetReviewListObject:Mappable
     }
 }
 
-class TTFilters:Mappable
+public class TTFilters:Mappable
 {
     var attributes      : [TTAttributes]?
     var dimensions      : [TTDimensions]?
     var userSettings    : TTUserSettings?
     var rating          : [TTRating]?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         attributes      <- map["attributes"]
         dimensions      <- map["dimensions"]
@@ -59,7 +59,7 @@ class TTFilters:Mappable
 /*********
  Objetos de respuesta para, GetViewDetail, VoteUp, VoteDowns y MarkAsInapropiate
  *********************/
-class TTReviewsObject:Mappable
+public class TTReviewsObject:Mappable
 {
     var idReview            : Int?
     var localeReview        : String?
@@ -88,11 +88,11 @@ class TTReviewsObject:Mappable
     var user                : TTUserReview?
     var errors              : [TTErrorObject]?
 
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         idReview            <- map["id"]
         localeReview        <- map["locale"]
@@ -121,18 +121,18 @@ class TTReviewsObject:Mappable
     }
 }
 
-class TTResponse:Mappable
+public class TTResponse:Mappable
 {
     var textResponse    : String?
     var locale          : String?
     var user            : TTUserReview?
     var dateCreated     : String?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         textResponse    <- map["text"]
         locale          <- map["locale"]
@@ -141,31 +141,31 @@ class TTResponse:Mappable
     }
 }
 
-class TTUserSettings:Mappable
+public class TTUserSettings:Mappable
 {
     var shopperProfiles     : [TTShopperProfiles]?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         shopperProfiles     <- map["shopperProfiles"]
     }
 }
 
-class TTRating:Mappable
+public class TTRating:Mappable
 {
     var valueR      : Int?
     var countR      : Int?
     var filter      : String?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         valueR       <- map["value"]
         countR       <- map["count"]
@@ -173,7 +173,7 @@ class TTRating:Mappable
     }
 }
 
-class TTDimensions:Mappable
+public class TTDimensions:Mappable
 {
     var type            : Int?
     var dimensionId     : Int?
@@ -186,11 +186,11 @@ class TTDimensions:Mappable
     var name            : String?
     var required        : Bool?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         type            <- map["type"]
         dimensionId     <- map["dimensionId"]
@@ -205,23 +205,23 @@ class TTDimensions:Mappable
     }
 }
 
-class TTMedia:Mappable
+public class TTMedia:Mappable
 {
     var photo   : [TTPhotoVideo]?
     var video   : [TTPhotoVideo]?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         photo   <- map["photo"]
         video   <- map["video"]
     }
 }
 
-class TTPhotoVideo:Mappable
+public class TTPhotoVideo:Mappable
 {
     var mediaId         : Int?
     var mediaType       : String?
@@ -247,11 +247,11 @@ class TTPhotoVideo:Mappable
     var tags            : [String]?
     
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         mediaId         <- map["id"]
         mediaType       <- map["type"]
@@ -278,7 +278,7 @@ class TTPhotoVideo:Mappable
     }
 }
 
-class TTThumbDims:Mappable
+public class TTThumbDims:Mappable
 {
     var widthT      : Int?
     var heightT     : Int?
@@ -286,11 +286,11 @@ class TTThumbDims:Mappable
     var targetLeft  : Int?
     var targetTop   : Int?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         widthT      <- map["width"]
         heightT     <- map["height"]
@@ -300,7 +300,7 @@ class TTThumbDims:Mappable
     }
 }
 
-class TTUserReview:Mappable
+public class TTUserReview:Mappable
 {
     var nickName        : String?
     var firstName       : String?
@@ -314,11 +314,11 @@ class TTUserReview:Mappable
     var badge           : TTBagde?
     var shopperProfiles : [TTShopperProfiles]?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         nickName        <- map["nickName"]
         firstName       <- map["firstName"]
@@ -333,23 +333,23 @@ class TTUserReview:Mappable
     }
 }
 
-class TTBagde:Mappable
+public class TTBagde:Mappable
 {
     var textBadge   : String?
     var imageUrl    : String?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         textBadge   <- map["text"]
         imageUrl    <- map["imageUrl"]
     }
 }
 
-class TTShopperProfiles:Mappable
+public class TTShopperProfiles:Mappable
 {
     var idShopper                   : Int?
     var values                      : [TTValues]?
@@ -360,11 +360,11 @@ class TTShopperProfiles:Mappable
     var required                    : Bool?
     var type                        : Int?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         idShopper                   <- map["id"]
         values                      <- map["values"]
@@ -377,7 +377,7 @@ class TTShopperProfiles:Mappable
     }
 }
 
-class TTCatalogItems:Mappable
+public class TTCatalogItems:Mappable
 {
     var sku             : String?
     var titleItem       : String?
@@ -391,11 +391,11 @@ class TTCatalogItems:Mappable
     
     
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         sku             <- map["sku"]
         titleItem       <- map["titleItem"]
@@ -409,17 +409,17 @@ class TTCatalogItems:Mappable
     }
 }
 
-class TTAttributes:Mappable
+public class TTAttributes:Mappable
 {
     var type        : String?
     var typeLabel   : String?
     var values      : [TTValues]?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         type        <- map["type"]
         typeLabel   <- map["typeLabel"]
@@ -427,7 +427,7 @@ class TTAttributes:Mappable
     }
 }
 
-class TTValues:Mappable
+public class TTValues:Mappable
 {
     var valueLabel  : String?
     var value       : String?
@@ -437,11 +437,11 @@ class TTValues:Mappable
     var sortOrder   : String?
     var filter      : String?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         valueLabel  <- map["valueLabel"]
         value       <- map["value"]
@@ -454,7 +454,7 @@ class TTValues:Mappable
     }
 }
 
-class TTRatingBreakdown:Mappable
+public class TTRatingBreakdown:Mappable
 {
     var uno     : Int?
     var dos     : Int?
@@ -462,11 +462,11 @@ class TTRatingBreakdown:Mappable
     var cuatro  : Int?
     var cinco   : Int?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         uno     <- map["1"]
         dos     <- map["2"]
@@ -479,16 +479,16 @@ class TTRatingBreakdown:Mappable
 /*********
  Objetos, Errores
  *********************/
-class TTErrorObject:Mappable
+public class TTErrorObject:Mappable
 {
     var message : String?
     var code    : Int?
     
-    required init?(map: Map)
+    required public init?(map: Map)
     {
     }
     
-    func mapping(map: Map)
+    public func mapping(map: Map)
     {
         message     <- map["message"]
         code        <- map["code"]
