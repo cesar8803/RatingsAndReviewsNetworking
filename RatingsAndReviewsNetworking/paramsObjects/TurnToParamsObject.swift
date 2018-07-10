@@ -32,7 +32,7 @@ public struct TurnToObjAccessToken:TurnToGeneric
     
     public func getDict() -> [String : Any]
     {
-        let dict:[String:Any] = [
+        let dict:[String:Any] =  [
             "client_id":        self.client_id,
             "client_secret":    self.client_secret,
             "grant_type":       self.grant_type
