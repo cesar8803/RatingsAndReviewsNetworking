@@ -76,9 +76,14 @@ public struct TurnToObjAskSku:TurnToGeneric
     //Properties
     public var skuList  : [String]
     public var sku      : String
+    public var limit    : Int?
+    public var offset   : Int?
     
-    public init(skuList:[String])
+    public init(skuList:[String], limit:Int?, offset:Int?)
     {
+        self.limit = limit
+        self.offset = offset
+        //
         self.sku = ""
         self.skuList = skuList
         //
@@ -93,7 +98,9 @@ public struct TurnToObjAskSku:TurnToGeneric
     public func getDict() -> [String : Any]
     {
         let dict:[String:Any] = [
-            "sku": self.sku
+            "sku": self.sku,
+            "limit": self.limit ?? 50,
+            "offset": self.offset ?? 0
         ]
         //
         return dict
