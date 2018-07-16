@@ -27,6 +27,7 @@ public enum TurnToRouterRequest:URLRequestConvertible
     case productList(params:TurnToGeneric)
     case ugcSummary(params:TurnToGeneric)
     case updateProduct(params:TurnToGeneric)
+    case search(params:TurnToGeneric)
     
     public func asURLRequest() throws -> URLRequest
     {
@@ -37,7 +38,7 @@ public enum TurnToRouterRequest:URLRequestConvertible
             {
             case .accessToken,.invalidateAccessToken,.createReview,.voteUp,.voteDown,.markAsInappropiate,.updateProduct:
                 return .post
-            case .reviewsList, .reviewDetail,.settings,.productList,.ugcSummary:
+            case .reviewsList, .reviewDetail,.settings,.productList,.ugcSummary,.search:
                 return .get
             }
         }
@@ -64,6 +65,8 @@ public enum TurnToRouterRequest:URLRequestConvertible
             case .ugcSummary(let params):
                 return params.getDict()
             case .updateProduct(let params):
+                return params.getDict()
+            case .search(let params):
                 return params.getDict()
             }
         }()
@@ -98,6 +101,8 @@ public enum TurnToRouterRequest:URLRequestConvertible
                 relativePath = TurnToContextService.ugcSummary.url
             case .updateProduct:
                 relativePath = TurnToContextService.updadteProduct.url
+            case .search:
+                relativePath = TurnToContextService.search.url
             }
             //
             var finalUrl = URL(string: TurnToConfig.sharedInstance.turntoEndpoint)!

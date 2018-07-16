@@ -260,6 +260,41 @@ public struct TurnToObjCatalogItems:TurnToGeneric
 }
 
 /*********
+ Este aplica para el servicio de Search
+ *******************/
+public struct TurnToObjSearch:TurnToGeneric
+{
+    //Properties
+    public var word     : String
+    public var sku      : String
+    public var limit    : Int
+    public var offset   : Int
+    
+    
+    public init(word:String,sku:String, limit:Int=50, offset:Int=0)
+    {
+        self.limit = limit
+        self.offset = offset
+        self.sku = sku
+        self.word = word
+    }
+    
+    public func getDict() -> [String : Any]
+    {
+        let dict:[String:Any] = [
+            "q": self.word,
+            "sku": self.sku,
+            "limit": self.limit,
+            "offset": self.offset,
+            "ugcType":"review",
+            "publishedOnly":"true"
+        ]
+        //
+        return dict
+    }
+}
+
+/*********
  Objeto para actualizar item
  *******************/
 public struct TurnToUpdateProduct:TurnToGeneric

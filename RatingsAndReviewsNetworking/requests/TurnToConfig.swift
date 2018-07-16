@@ -23,6 +23,7 @@ internal enum TurnToContextService
     case productList
     case ugcSummary
     case updadteProduct
+    case search
     
     internal var url:String
     {
@@ -52,6 +53,8 @@ internal enum TurnToContextService
             return "/#version#/products/ugc_summary"
         case .updadteProduct:
             return "/#version#/products"
+        case .search:
+            return "/#version#/search"
         }
     }
 }
