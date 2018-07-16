@@ -112,6 +112,7 @@ public class TTReviewsObject:Mappable
         catalogItems        <- map["catalogItems"]
         dimensions          <- map["dimensions"]
         media               <- map["media"]
+        responses           <- map["responses"]
         reviewedDate        <- map["reviewedDate"]
         purchaseDate        <- map["purchaseDate"]
         tags                <- map["tags"]
