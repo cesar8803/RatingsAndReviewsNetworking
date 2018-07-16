@@ -24,6 +24,7 @@ internal enum TurnToContextService
     case ugcSummary
     case updadteProduct
     case search
+    case customFields
     
     internal var url:String
     {
@@ -55,6 +56,9 @@ internal enum TurnToContextService
             return "/#version#/products"
         case .search:
             return "/#version#/search"
+        case .customFields:
+           return "/#version#/products"
+            
         }
     }
 }
@@ -63,7 +67,7 @@ public class TurnToConfig
 {
     public static let sharedInstance = TurnToConfig()
     
-    private var _turntoApiVersion       : String = "v1.2"
+    private var _turntoApiVersion       : String = "v1.1"
     private var _turntoEndpoint         : String = "https://api.turnto.com"
     private var _timeOutInterval        : Double = 60.0
     private var _headerField            : String = "Authorization"

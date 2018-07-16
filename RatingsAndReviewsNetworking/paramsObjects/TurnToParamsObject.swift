@@ -294,6 +294,36 @@ public struct TurnToObjSearch:TurnToGeneric
     }
 }
 
+
+/*********
+ Este aplica para el servicio de CustomFields
+ *******************/
+public struct TurnToObjCustomFields:TurnToGeneric
+{
+    //Properties
+   
+    public var sku      : String
+    
+    
+    public init(sku:String)
+    {
+       
+        self.sku = sku
+      
+    }
+    
+    public func getDict() -> [String : Any]
+    {
+        let dict:[String:Any] = [
+            
+            "sku": self.sku
+            
+        ]
+        //
+        return dict
+    }
+}
+
 /*********
  Objeto para actualizar item
  *******************/
