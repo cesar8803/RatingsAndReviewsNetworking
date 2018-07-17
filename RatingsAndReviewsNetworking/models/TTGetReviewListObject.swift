@@ -97,7 +97,7 @@ public class TTReviewsObject:Mappable
         idReview            <- map["id"]
         localeReview        <- map["locale"]
         rating              <- map["rating"]
-        titleReview         <- map["nickName"]
+        titleReview         <- map["title"]
         textReview          <- map["text"]
         textLength          <- map["textLength"]
         csFlag              <- map["csFlag"]
