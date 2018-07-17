@@ -10,6 +10,33 @@ import Foundation
 import ObjectMapper
 
 /*********
+ Objetos de respuesta para listado de búsqueda en Reviews
+ *********************/
+public class TTGetReviewSearchListObject:Mappable
+{
+    public var results     : [TTReviewsObject]?
+    public var offset      : Int?
+    public var limit       : Int?
+    public var total       : Int?
+    public var errors      : [TTErrorObject]?
+    public var filters     : TTFilters?
+    
+    required public init?(map: Map)
+    {
+    }
+    
+    public func mapping(map: Map)
+    {
+        results     <- map["results"]
+        offset      <- map["offset"]
+        limit       <- map["limit"]
+        total       <- map["total"]
+        errors      <- map["errors"]
+        filters     <- map["filters"]
+    }
+}
+
+/*********
  Objetos de respuesta para listado de Reviews
  *********************/
 public class TTGetReviewListObject:Mappable
