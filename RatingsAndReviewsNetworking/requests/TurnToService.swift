@@ -64,10 +64,7 @@ public class TurnToService
                             //
                             if let customFields = Mapper<T>().mapArray(JSONObject: json)
                             {
-                                if customFields.count > 0
-                                {
-                                    completionList?(customFields)
-                                }
+                                completionList?(customFields)
                             }
                             else
                             {
