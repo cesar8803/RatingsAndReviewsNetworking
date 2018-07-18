@@ -431,12 +431,13 @@ public class TTAttributes:Mappable
     }
 }
 
-public class TTdimensions:Mappable
+public class TTProductDimensions:Mappable
 {
-    public var sku             : String?
-    public var title           : String?
-    public var url             : String?
-    public var dimensions      : [TTDimensions]?
+    public var sku              : String?
+    public var title            : String?
+    public var url              : String?
+    public var dimensions       : [TTDimensions]?
+    public var errors           : [TTErrorObject]?
     
     required public init?(map: Map)
     {
@@ -448,6 +449,7 @@ public class TTdimensions:Mappable
         title           <- map["typeLabel"]
         url             <- map["typeLabel"]
         dimensions      <- map["dimensions"]
+        errors          <- map["errors"]
     }
 }
 
