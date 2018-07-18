@@ -56,27 +56,55 @@ public class TurnToService
                      y no un objeto, por lo que confunde al Mapper, a lo cual hay que manejar de forma
                      diferente los datos obtenidos
                     *********/
-                    if let data = response.data
+                    if response.result.isSuccess
                     {
-                        do
+                        if let data = response.result.value?.toJSON(), let errores = data["errors"] as? [[String:Any]], !errores.isEmpty
                         {
-                            let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
-                            //
-                            if let customFields = Mapper<T>().mapArray(JSONObject: json)
+                            if let code = errores[0]["code"] as? Int, let message = errores[0]["message"] as? String
                             {
-                                completionList?(customFields)
+                                if code == 117 && message.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "invalid access token"
+                                {
+                                    getTokenOfIsInvalid(number_try_request: number_try_request, number_try_token_request: 0)
+                                }
+                                else
+                                {
+                                    errorCompletion?("Error no controlado, verificar.")
+                                }
                             }
                             else
                             {
-                                errorCompletion?("Error al mapear los datos de respuesta del servicio.")
+                                errorCompletion?("Hay error, pero el servicio no identifica de que tipo, validar respuesta de errores")
                             }
-                        }catch let error as NSError {
-                            errorCompletion?(error.localizedDescription)
+                        }
+                        else
+                        {
+                            errorCompletion?("No hay datos de respuesta en el servicio, validar request")
                         }
                     }
                     else
                     {
-                        errorCompletion?("Error al obtener datos del servicio")
+                        if let data = response.data
+                        {
+                            do
+                            {
+                                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                                //
+                                if let customFields = Mapper<T>().mapArray(JSONObject: json)
+                                {
+                                    completionList?(customFields)
+                                }
+                                else
+                                {
+                                    errorCompletion?("Error al mapear los datos de respuesta del servicio.")
+                                }
+                            }catch let error as NSError {
+                                errorCompletion?(error.localizedDescription)
+                            }
+                        }
+                        else
+                        {
+                            errorCompletion?("Error al obtener datos del servicio")
+                        }
                     }
                 }
                 else
