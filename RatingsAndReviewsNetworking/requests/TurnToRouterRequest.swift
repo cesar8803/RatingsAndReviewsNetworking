@@ -9,6 +9,12 @@
 import Foundation
 import Alamofire
 
+public enum TurnToTypeRequest
+{
+    case customFields
+    case restServices
+}
+
 public enum TurnToRouterRequest:URLRequestConvertible
 {
     //AuthType

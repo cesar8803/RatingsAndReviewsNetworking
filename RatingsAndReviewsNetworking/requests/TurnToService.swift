@@ -18,13 +18,13 @@ public class TurnToService
     /**
      Unica peticion generica para ser utilizada en todas las llamadas al servicio de TurnTo
     */
-    public static func callServiceWith<T:Mappable>(typeRequest:URLRequestConvertible, completion:@escaping (_ dataResponse:T) -> Void, errorCompletion:@escaping (_ errorString:String)->Void)
+    public static func callServiceWith<T:Mappable>(type:TurnToTypeRequest = TurnToTypeRequest.restServices, typeRequest:URLRequestConvertible, completion:((_ dataResponse:T) -> Void)?, customFieldCompletion:((_ dataResponse:[TTProductDimensions])->Void)?, errorCompletion:((_ errorString:String)->Void)?)
     {
         func getTokenOfIsInvalid(number_try_request:Int, number_try_token_request:Int)
         {
             if number_try_token_request >= TurnToConfig.sharedInstance.max_try_get_request
             {
-                errorCompletion("Se ha sobrepasado el número de intentos '\(TurnToConfig.sharedInstance.max_try_get_request)' de obtención de token de autenticacion para los servicios.")
+                errorCompletion?("Se ha sobrepasado el número de intentos '\(TurnToConfig.sharedInstance.max_try_get_request)' de obtención de token de autenticacion para los servicios.")
                 return
             }
             //
@@ -44,53 +44,86 @@ public class TurnToService
         {
             if number_try_request >= TurnToConfig.sharedInstance.max_try_get_request
             {
-                errorCompletion("Se ha sobrepasado el número de intentos '\(TurnToConfig.sharedInstance.max_try_get_request)' de invocación al servicio.")
+                errorCompletion?("Se ha sobrepasado el número de intentos '\(TurnToConfig.sharedInstance.max_try_get_request)' de invocación al servicio.")
                 return
             }
             
             Alamofire.request(typeRequest).responseObject { (response:DataResponse<T>) in
-                if response.result.isSuccess
+                if type  == TurnToTypeRequest.customFields
                 {
-                    if let data = response.result.value?.toJSON()
+                    /***
+                     Caso especial el momento de serializar ya que este contiene como respuesta un arreglo
+                     y no un objeto, por lo que confunde al Mapper, a lo cual hay que manejar de forma
+                     diferente los datos obtenidos
+                    *********/
+                    if let data = response.data
                     {
-                        if let errores = data["errors"] as? [[String:Any]]
+                        do
                         {
-                            if !errores.isEmpty
+                            let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                            //
+                            if let customFields = Mapper<TTProductDimensions>().mapArray(JSONObject: json)
                             {
-                                if let code = errores[0]["code"] as? Int, let message = errores[0]["message"] as? String
-                                {
-                                    if code == 117 && message.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "invalid access token"
-                                    {
-                                        getTokenOfIsInvalid(number_try_request: number_try_request, number_try_token_request: 0)
-                                    }
-                                    else
-                                    {
-                                       completion(response.result.value!)
-                                    }
-                                }
-                                else
-                                {
-                                    errorCompletion("Hay error, pero el servicio no identifica de que tipo, validar respuesta de errores")
-                                }
+                                customFieldCompletion?(customFields)//Completion de un arreglo
                             }
                             else
                             {
-                                errorCompletion("Hay error, pero el servicio no identifica los tipos disponibles, verificar.")
+                                errorCompletion?("Error al mapear los datos de respuesta del servicio.")
                             }
-                        }
-                        else
-                        {
-                           completion(response.result.value!)
+                        }catch let error as NSError {
+                            errorCompletion?(error.localizedDescription)
                         }
                     }
                     else
                     {
-                        errorCompletion("No hay datos de respuesta en el servicio, validar request")
+                        errorCompletion?("Error al obtener datos del servicio")
                     }
                 }
                 else
                 {
-                    errorCompletion((response.result.error?.localizedDescription)!)
+                    if response.result.isSuccess
+                    {
+                        if let data = response.result.value?.toJSON()
+                        {
+                            if let errores = data["errors"] as? [[String:Any]]
+                            {
+                                if !errores.isEmpty
+                                {
+                                    if let code = errores[0]["code"] as? Int, let message = errores[0]["message"] as? String
+                                    {
+                                        if code == 117 && message.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "invalid access token"
+                                        {
+                                            getTokenOfIsInvalid(number_try_request: number_try_request, number_try_token_request: 0)
+                                        }
+                                        else
+                                        {
+                                            completion?(response.result.value!)
+                                        }
+                                    }
+                                    else
+                                    {
+                                        errorCompletion?("Hay error, pero el servicio no identifica de que tipo, validar respuesta de errores")
+                                    }
+                                }
+                                else
+                                {
+                                    errorCompletion?("Hay error, pero el servicio no identifica los tipos disponibles, verificar.")
+                                }
+                            }
+                            else
+                            {
+                                completion?(response.result.value!)
+                            }
+                        }
+                        else
+                        {
+                            errorCompletion?("No hay datos de respuesta en el servicio, validar request")
+                        }
+                    }
+                    else
+                    {
+                        errorCompletion?(response.result.error?.localizedDescription ?? "error no especificado")
+                    }
                 }
             }
         }
@@ -124,7 +157,7 @@ public class TurnToService
                 //
                 completion(nil)
             }
-        }) { (error) in
+        }, customFieldCompletion: nil) { (error) in
             completion(error)
         }
     }
