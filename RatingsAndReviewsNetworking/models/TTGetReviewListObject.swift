@@ -445,9 +445,9 @@ public class TTProductDimensions:Mappable
     
     public func mapping(map: Map)
     {
-        sku             <- map["type"]
-        title           <- map["typeLabel"]
-        url             <- map["typeLabel"]
+        sku             <- map["sku"]
+        title           <- map["title"]
+        url             <- map["url"]
         dimensions      <- map["dimensions"]
         errors          <- map["errors"]
     }
