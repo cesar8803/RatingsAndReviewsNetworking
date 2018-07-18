@@ -11,8 +11,8 @@ import Alamofire
 
 public enum TurnToTypeRequest
 {
-    case customFields
-    case restServices
+    case listObject
+    case simpleObject
 }
 
 public enum TurnToRouterRequest:URLRequestConvertible

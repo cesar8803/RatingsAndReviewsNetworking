@@ -18,7 +18,7 @@ public class TurnToService
     /**
      Unica peticion generica para ser utilizada en todas las llamadas al servicio de TurnTo
     */
-    public static func callServiceWith<T:Mappable>(type:TurnToTypeRequest = TurnToTypeRequest.restServices, typeRequest:URLRequestConvertible, completion:((_ dataResponse:T) -> Void)?, customFieldCompletion:((_ dataResponse:[TTProductDimensions])->Void)?, errorCompletion:((_ errorString:String)->Void)?)
+    public static func callServiceWith<T:Mappable>(type:TurnToTypeRequest = TurnToTypeRequest.simpleObject, typeRequest:URLRequestConvertible, completion:((_ dataResponse:T) -> Void)?, completionList:((_ dataResponse:[T])->Void)?, errorCompletion:((_ errorString:String)->Void)?)
     {
         func getTokenOfIsInvalid(number_try_request:Int, number_try_token_request:Int)
         {
@@ -49,7 +49,7 @@ public class TurnToService
             }
             
             Alamofire.request(typeRequest).responseObject { (response:DataResponse<T>) in
-                if type  == TurnToTypeRequest.customFields
+                if type  == TurnToTypeRequest.listObject
                 {
                     /***
                      Caso especial el momento de serializar ya que este contiene como respuesta un arreglo
@@ -62,9 +62,12 @@ public class TurnToService
                         {
                             let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
                             //
-                            if let customFields = Mapper<TTProductDimensions>().mapArray(JSONObject: json)
+                            if let customFields = Mapper<T>().mapArray(JSONObject: json)
                             {
-                                customFieldCompletion?(customFields)//Completion de un arreglo
+                                if customFields.count > 0
+                                {
+                                    completionList?(customFields)
+                                }
                             }
                             else
                             {
@@ -157,7 +160,7 @@ public class TurnToService
                 //
                 completion(nil)
             }
-        }, customFieldCompletion: nil) { (error) in
+        }, completionList: nil) { (error) in
             completion(error)
         }
     }
