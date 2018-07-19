@@ -67,7 +67,7 @@ public class TurnToConfig
 {
     public static let sharedInstance = TurnToConfig()
     
-    private var _turntoApiVersion       : String = "v1.1"
+    private var _turntoApiVersion       : String = "v1.2"
     private var _turntoEndpoint         : String = "https://api.turnto.com"
     private var _timeOutInterval        : Double = 60.0
     private var _headerField            : String = "Authorization"
