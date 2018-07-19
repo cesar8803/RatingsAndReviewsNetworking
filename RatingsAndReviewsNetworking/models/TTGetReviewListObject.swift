@@ -212,7 +212,7 @@ public class TTDimensionsP:Mappable
 {
     public var id              : Int?
     public var type            : Int?
-    public var label           : [String]?
+    public var label           : String?
     public var values          : [TTValues]?
     public var sortOrder       : Int?
     public var required        : Bool?
