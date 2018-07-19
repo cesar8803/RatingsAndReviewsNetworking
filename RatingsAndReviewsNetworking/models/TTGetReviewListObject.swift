@@ -201,10 +201,33 @@ public class TTDimensions:Mappable
         dimensionLabel  <- map["dimensionLabel"]
         valueDimension  <- map["value"]
         onlyLabel       <- map["label"]
-        
         values          <- map["values"]
         sortOrder       <- map["sortOrder"]
         name            <- map["name"]
+        required        <- map["required"]
+    }
+}
+
+public class TTDimensionsP:Mappable
+{
+    public var id              : Int?
+    public var type            : Int?
+    public var label           : [String]?
+    public var values          : [TTValues]?
+    public var sortOrder       : Int?
+    public var required        : Bool?
+    
+    required public init?(map: Map)
+    {
+    }
+    
+    public func mapping(map: Map)
+    {
+        id              <- map["id"]
+        type            <- map["type"]
+        label           <- map["label"]
+        values          <- map["values"]
+        sortOrder       <- map["sortOrder"]
         required        <- map["required"]
     }
 }
@@ -436,7 +459,7 @@ public class TTProductDimensions:Mappable
     public var sku              : String?
     public var title            : String?
     public var url              : String?
-    public var dimensions       : [TTDimensions]?
+    public var dimensions       : [TTDimensionsP]?
     public var errors           : [TTErrorObject]?
     
     required public init?(map: Map)
@@ -457,7 +480,7 @@ public class TTValues:Mappable
 {
     public var valueLabel  : String?
     public var value       : String?
-    
+    public var label       : String?
     public var idValue     : Int?
     public var countV      : Int?
     public var sortOrder   : String?
@@ -471,7 +494,7 @@ public class TTValues:Mappable
     {
         valueLabel  <- map["valueLabel"]
         value       <- map["value"]
-        
+        label       <- map["label"]
         idValue     <- map["id"]
         countV      <- map["count"]
         sortOrder   <- map["sortOrder"]
