@@ -89,6 +89,8 @@ public class TTReviewsObject:Mappable
     public var dateCreated         : String?
     public var user                : TTUserReview?
     public var errors              : [TTErrorObject]?
+    //
+    public var isVoted             : Bool = false
 
     required public init?(map: Map)
     {
@@ -485,6 +487,8 @@ public class TTValues:Mappable
     public var countV      : Int?
     public var sortOrder   : String?
     public var filter      : String?
+    //
+    public var isSelected  : Bool = false
     
     required public init?(map: Map)
     {
