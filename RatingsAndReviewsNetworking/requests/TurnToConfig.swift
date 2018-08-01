@@ -72,6 +72,8 @@ public class TurnToConfig
     private var _timeOutInterval        : Double = 60.0
     private var _headerField            : String = "Authorization"
     private var _accesApiToken          : String = "bearer LSZVtMUo183hGgNiNPaoVRz96iERW1P364gs"
+    private var _token                  : String = "LSZVtMUo183hGgNiNPaoVRz96iERW1P364gs"
+    private var _typeToken              : String = "bearer"
     //
     //Valores Constantes proporcionados por TurnTo para obtener Token
     private var _client_id              : String = "euMikXTjfROYykrsite"
@@ -143,6 +145,26 @@ public class TurnToConfig
         }
         get{
             return _accesApiToken
+        }
+    }
+    
+    public var token:String
+    {
+        set{
+            _token = newValue
+        }
+        get{
+            return _token
+        }
+    }
+    
+    public var typeToken:String
+    {
+        set{
+            _typeToken = newValue
+        }
+        get{
+            return _typeToken
         }
     }
     

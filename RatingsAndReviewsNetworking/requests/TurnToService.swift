@@ -182,6 +182,8 @@ public class TurnToService
             {
                 let token = "\(response.token_type ?? "xxx") \(response.access_token ?? "0")"
                 TurnToConfig.sharedInstance.accesApiToken = "\(token)"
+                TurnToConfig.sharedInstance.typeToken = response.token_type ?? "xxx"
+                TurnToConfig.sharedInstance.token = response.access_token ?? "0"
                 //
                 completion(nil)
             }
