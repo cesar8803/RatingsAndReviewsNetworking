@@ -218,6 +218,8 @@ public class TTDimensionsP:Mappable
     public var values          : [TTValues]?
     public var sortOrder       : Int?
     public var required        : Bool?
+    //
+    public var isSelected      : Bool = false
     
     required public init?(map: Map)
     {
