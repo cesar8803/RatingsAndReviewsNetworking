@@ -9,6 +9,12 @@
 import Foundation
 import ObjectMapper
 
+public enum VotedType {
+    case up
+    case down
+    case none
+}
+
 /*********
  Objetos de respuesta para listado de Reviews y búsqueda en Reviews
  *********************/
@@ -90,7 +96,7 @@ public class TTReviewsObject:Mappable
     public var user                : TTUserReview?
     public var errors              : [TTErrorObject]?
     //
-    public var isVoted             : Bool = false
+    public var votedStatus         : VotedType = VotedType.none
 
     required public init?(map: Map)
     {
