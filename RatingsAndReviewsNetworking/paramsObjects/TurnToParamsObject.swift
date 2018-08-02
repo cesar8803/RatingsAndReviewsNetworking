@@ -280,6 +280,8 @@ public struct TurnToObjMedia:TurnToGeneric
     public var photos   : [TurnToObjPhotos]?
     //public var videos   : [TurnToObjVideos]?//Videos no se manda porque ya no se utilizara
     
+    public init() {}
+    
     public func getDict() -> [String : Any]
     {
         var dict:[String:Any] = [
