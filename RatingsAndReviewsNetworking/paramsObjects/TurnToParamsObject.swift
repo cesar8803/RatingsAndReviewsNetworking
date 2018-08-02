@@ -153,13 +153,17 @@ public struct TurnToObjCreateReview:TurnToGeneric
     {
         var dict:[String:Any] = [
             "autoModerated": false,
-            "catalogItems": self.catalogItems,
             "published": false,
             "rating": self.rating,
             "text": self.text,
             "title": self.title,
             "user":self.user.getDict()
         ]
+        //
+        if !self.catalogItems.isEmpty
+        {
+            dict["catalogItems"] = [self.catalogItems[0].getDict()]
+        }
         //
         var data:[[String:Any]] = []
         for item in self.dimensions
