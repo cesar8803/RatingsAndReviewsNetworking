@@ -398,6 +398,8 @@ public struct TurnToObjSearch:TurnToGeneric
     public var sku      : String
     public var limit    : Int
     public var offset   : Int
+    //
+    public var sort     : String?
     
     
     public init(word:String,sku:String, limit:Int=50, offset:Int=0)
@@ -406,11 +408,13 @@ public struct TurnToObjSearch:TurnToGeneric
         self.offset = offset
         self.sku = sku
         self.word = word
+        //
+        self.sort = nil
     }
     
     public func getDict() -> [String : Any]
     {
-        let dict:[String:Any] = [
+        var dict:[String:Any] = [
             "q": self.word,
             "sku": self.sku,
             "limit": self.limit,
@@ -418,6 +422,11 @@ public struct TurnToObjSearch:TurnToGeneric
             "ugcType":"review",
             "publishedOnly":"true"
         ]
+        //
+        if self.sort != nil
+        {
+            dict["sort"] = self.sort!
+        }
         //
         return dict
     }
