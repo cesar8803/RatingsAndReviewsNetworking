@@ -107,7 +107,7 @@ public struct TurnToObjAskSku:TurnToGeneric
         //
         if self.sort != nil
         {
-            dict["sort"] = self.sort
+            dict["sort"] = self.sort ?? "upVotes:desc"
         }
         //
         return dict
