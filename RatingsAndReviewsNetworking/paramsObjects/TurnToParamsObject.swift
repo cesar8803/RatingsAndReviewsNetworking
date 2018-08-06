@@ -136,6 +136,7 @@ public struct TurnToObjCreateReview:TurnToGeneric
     public var userAgent                    : String?
     public var media                        : TurnToObjMedia?
     public var turntoTrackingToken          : String?
+    public var purchaseDate                 : String?
     
     public init(rating:Int, user:TurnToObjUser, catalogItems:[TurnToObjCatalogItems], title:String, text:String, dimensions:[TurnToObjDimensions])
     {
@@ -154,6 +155,7 @@ public struct TurnToObjCreateReview:TurnToGeneric
         self.userAgent = nil
         self.media = nil
         self.turntoTrackingToken = nil
+        self.purchaseDate = nil
     }
     
     public func getDict() -> [String : Any]
@@ -185,6 +187,11 @@ public struct TurnToObjCreateReview:TurnToGeneric
         if self.media != nil
         {
             dict["media"] = self.media!.getDict()
+        }
+        //
+        if self.purchaseDate != nil
+        {
+            dict["purchaseDate"] = self.purchaseDate ?? "vacio"
         }
         //
         return dict
