@@ -141,7 +141,7 @@ public enum TurnToRouterRequest:URLRequestConvertible
         //
         let encoding: ParameterEncoding = {
             switch self {
-            case .createReview, .markAsInappropiate:
+            case .createReview, .markAsInappropiate, .createorders:
                 return JSONEncoding.default
             default:
                 return URLEncoding.default
