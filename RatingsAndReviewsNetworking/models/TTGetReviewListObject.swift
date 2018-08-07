@@ -133,6 +133,8 @@ public class TTReviewsObject:Mappable
     }
 }
 
+
+
 public class TTResponse:Mappable
 {
     public var textResponse    : String?
@@ -537,6 +539,21 @@ public class TTRatingBreakdown:Mappable
     }
 }
 
+public class TTCreateOrden:Mappable
+{
+    public var id         : Int?
+    public var orderId     : String?
+    required public init?(map: Map)
+    {
+    }
+    public func mapping(map: Map)
+    {
+        id             <- map["id"]
+        orderId        <- map["code"]
+    }
+    
+}
+
 /*********
  Objetos, Errores
  *********************/
@@ -555,3 +572,4 @@ public class TTErrorObject:Mappable
         code        <- map["code"]
     }
 }
+

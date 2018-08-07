@@ -25,6 +25,7 @@ internal enum TurnToContextService
     case updadteProduct
     case search
     case customFields
+    case createorders
     
     internal var url:String
     {
@@ -58,6 +59,8 @@ internal enum TurnToContextService
             return "/#version#/search"
         case .customFields:
            return "/#version#/products"
+        case .createorders:
+            return "/#version#/orders/create"
             
         }
     }

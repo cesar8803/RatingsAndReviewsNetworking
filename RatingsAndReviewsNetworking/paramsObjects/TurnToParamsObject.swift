@@ -381,6 +381,7 @@ public struct TurnToObjCatalogItems:TurnToGeneric
     //optionals
     public var title       : String?
     public var url         : String?
+    public var itemImageUrl: String?
     
     public init(sku:String)
     {
@@ -391,12 +392,14 @@ public struct TurnToObjCatalogItems:TurnToGeneric
     
     public func getDict() -> [String : Any]
     {
-        let dict:[String:Any] = [
+        var dict:[String:Any] = [
             "sku": self.sku,
             "averageRating": 0,
             "ratingCount": 0,
             "reviewCount": 0
         ]
+        if self.itemImageUrl != nil { dict["itemImageUrl"] = self.itemImageUrl! }
+        if self.url != nil { dict["url"] = self.url! }
         //
         return dict
     }
@@ -412,7 +415,6 @@ public struct TurnToObjSearch:TurnToGeneric
     public var sku      : String
     public var limit    : Int
     public var offset   : Int
-    //
     public var sort     : String?
     
     
@@ -487,6 +489,35 @@ public struct TurnToUpdateProduct:TurnToGeneric
     {
         return [:]
     }
+}
+
+/*********
+ Objeto para crear una orden
+ *******************/
+public struct TurnToObjCreateOrder:TurnToGeneric
+{
+    public var orderId                      : String
+    public var user                         : TurnToObjUser
+    public var catalogItems                 : [TurnToObjCatalogItems]
+    public func getDict() -> [String : Any] {
+        var dict:[String:Any] = [
+            "orderId":self.orderId,
+            "user":self.user.getDict()
+        ]
+        if !self.catalogItems.isEmpty
+        {
+            var data:[[String:Any]] = []
+            for item in self.catalogItems
+            {
+                data.append(item.getDict())
+            }
+            //
+            dict["catalogItems"] = data
+        }
+        return dict
+    }
+    
+    
 }
 
 
