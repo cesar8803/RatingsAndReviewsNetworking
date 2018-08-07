@@ -499,6 +499,15 @@ public struct TurnToObjCreateOrder:TurnToGeneric
     public var orderId                      : String
     public var user                         : TurnToObjUser
     public var catalogItems                 : [TurnToObjCatalogItems]
+    
+    public init(orderId:String, user:TurnToObjUser, catalogItems:[TurnToObjCatalogItems])
+    {
+        self.orderId = orderId
+        self.user = user
+        self.catalogItems = catalogItems
+    }
+    
+    
     public func getDict() -> [String : Any] {
         var dict:[String:Any] = [
             "orderId":self.orderId,
