@@ -499,12 +499,13 @@ public struct TurnToObjCreateOrder:TurnToGeneric
     public var orderId                      : String
     public var user                         : TurnToObjUser
     public var catalogItems                 : [TurnToObjCatalogItems]
+//    public var items                        : [Tu]
     
-    public init(orderId:String, user:TurnToObjUser, catalogItems:[TurnToObjCatalogItems])
+    public init(orderId:String, user:TurnToObjUser, items:[TurnToObjCatalogItems])
     {
         self.orderId = orderId
         self.user = user
-        self.catalogItems = catalogItems
+        self.catalogItems = items
     }
     
     
@@ -525,135 +526,4 @@ public struct TurnToObjCreateOrder:TurnToGeneric
         }
         return dict
     }
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
