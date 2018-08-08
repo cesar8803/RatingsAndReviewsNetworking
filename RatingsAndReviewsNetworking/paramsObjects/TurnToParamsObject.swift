@@ -400,6 +400,7 @@ public struct TurnToObjCatalogItems:TurnToGeneric
         ]
         if self.itemImageUrl != nil { dict["itemImageUrl"] = self.itemImageUrl! }
         if self.url != nil { dict["url"] = self.url! }
+        if self.title != nil { dict["title"] = self.title! }
         //
         return dict
     }
