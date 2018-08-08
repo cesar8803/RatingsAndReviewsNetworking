@@ -522,7 +522,7 @@ public struct TurnToObjCreateOrder:TurnToGeneric
                 data.append(item.getDict())
             }
             //
-            dict["catalogItems"] = data
+            dict["items"] = data
         }
         return dict
     }
