@@ -498,14 +498,14 @@ public struct TurnToObjCreateOrder:TurnToGeneric
 {
     public var orderId                      : String
     public var user                         : TurnToObjUser
-    public var catalogItems                 : [TurnToObjCatalogItems]
+    public var items                        : [TurnToObjCatalogItems]
 //    public var items                        : [Tu]
     
     public init(orderId:String, user:TurnToObjUser, items:[TurnToObjCatalogItems])
     {
         self.orderId = orderId
         self.user = user
-        self.catalogItems = items
+        self.items = items
     }
     
     
@@ -514,10 +514,10 @@ public struct TurnToObjCreateOrder:TurnToGeneric
             "orderId":self.orderId,
             "user":self.user.getDict()
         ]
-        if !self.catalogItems.isEmpty
+        if !self.items.isEmpty
         {
             var data:[[String:Any]] = []
-            for item in self.catalogItems
+            for item in self.items
             {
                 data.append(item.getDict())
             }
