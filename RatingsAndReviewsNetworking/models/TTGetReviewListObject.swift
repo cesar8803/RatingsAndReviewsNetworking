@@ -543,6 +543,8 @@ public class TTCreateOrden:Mappable
 {
     public var id         : Int?
     public var orderId     : String?
+    public var errors      : [TTErrorObject]?
+    
     required public init?(map: Map)
     {
     }
@@ -550,6 +552,7 @@ public class TTCreateOrden:Mappable
     {
         id             <- map["id"]
         orderId        <- map["code"]
+        errors         <- map["errors"]
     }
     
 }
