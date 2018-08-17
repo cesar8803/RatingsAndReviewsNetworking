@@ -79,8 +79,8 @@ public class TurnToConfig
     private var _typeToken              : String = "bearer"
     //
     //Valores Constantes proporcionados por TurnTo para obtener Token
-    private var _client_id              : String = "euMikXTjfROYykrsite"
-    private var _client_secret          : String = "xxU5qQRa7DcL53T5W65YvfdryLuCauth"
+    private var _client_id              : String = "xxxxxxxxxx"
+    private var _client_secret          : String = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     private var _grant_type             : String = "client_credentials"
     private var _max_try_get_request    : Int = 2
     
