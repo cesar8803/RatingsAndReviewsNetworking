@@ -9,11 +9,18 @@
 import Foundation
 import ObjectMapper
 
+public enum VotedType {
+    case up
+    case down
+    case none
+}
+
 /*********
- Objetos de respuesta para listado de Reviews
+ Objetos de respuesta para listado de Reviews y búsqueda en Reviews
  *********************/
 public class TTGetReviewListObject:Mappable
 {
+    public var results     : [TTReviewsObject]?
     public var reviews     : [TTReviewsObject]?
     public var offset      : Int?
     public var limit       : Int?
@@ -27,6 +34,7 @@ public class TTGetReviewListObject:Mappable
     
     public func mapping(map: Map)
     {
+        results     <- map["results"]
         reviews     <- map["reviews"]
         offset      <- map["offset"]
         limit       <- map["limit"]
@@ -87,6 +95,8 @@ public class TTReviewsObject:Mappable
     public var dateCreated         : String?
     public var user                : TTUserReview?
     public var errors              : [TTErrorObject]?
+    //
+    public var votedStatus         : VotedType = VotedType.none
 
     required public init?(map: Map)
     {
@@ -97,7 +107,7 @@ public class TTReviewsObject:Mappable
         idReview            <- map["id"]
         localeReview        <- map["locale"]
         rating              <- map["rating"]
-        titleReview         <- map["nickName"]
+        titleReview         <- map["title"]
         textReview          <- map["text"]
         textLength          <- map["textLength"]
         csFlag              <- map["csFlag"]
@@ -112,6 +122,7 @@ public class TTReviewsObject:Mappable
         catalogItems        <- map["catalogItems"]
         dimensions          <- map["dimensions"]
         media               <- map["media"]
+        responses           <- map["responses"]
         reviewedDate        <- map["reviewedDate"]
         purchaseDate        <- map["purchaseDate"]
         tags                <- map["tags"]
@@ -121,6 +132,8 @@ public class TTReviewsObject:Mappable
         errors              <- map["errors"]
     }
 }
+
+
 
 public class TTResponse:Mappable
 {
@@ -198,10 +211,35 @@ public class TTDimensions:Mappable
         dimensionLabel  <- map["dimensionLabel"]
         valueDimension  <- map["value"]
         onlyLabel       <- map["label"]
-        
         values          <- map["values"]
         sortOrder       <- map["sortOrder"]
         name            <- map["name"]
+        required        <- map["required"]
+    }
+}
+
+public class TTDimensionsP:Mappable
+{
+    public var id              : Int?
+    public var type            : Int?
+    public var label           : String?
+    public var values          : [TTValues]?
+    public var sortOrder       : Int?
+    public var required        : Bool?
+    //
+    public var isSelected      : Bool = false
+    
+    required public init?(map: Map)
+    {
+    }
+    
+    public func mapping(map: Map)
+    {
+        id              <- map["id"]
+        type            <- map["type"]
+        label           <- map["label"]
+        values          <- map["values"]
+        sortOrder       <- map["sortOrder"]
         required        <- map["required"]
     }
 }
@@ -428,15 +466,39 @@ public class TTAttributes:Mappable
     }
 }
 
+public class TTProductDimensions:Mappable
+{
+    public var sku              : String?
+    public var title            : String?
+    public var url              : String?
+    public var dimensions       : [TTDimensionsP]?
+    public var errors           : [TTErrorObject]?
+    
+    required public init?(map: Map)
+    {
+    }
+    
+    public func mapping(map: Map)
+    {
+        sku             <- map["sku"]
+        title           <- map["title"]
+        url             <- map["url"]
+        dimensions      <- map["dimensions"]
+        errors          <- map["errors"]
+    }
+}
+
 public class TTValues:Mappable
 {
     public var valueLabel  : String?
     public var value       : String?
-    
+    public var label       : String?
     public var idValue     : Int?
     public var countV      : Int?
     public var sortOrder   : String?
     public var filter      : String?
+    //
+    public var isSelected  : Bool = false
     
     required public init?(map: Map)
     {
@@ -446,7 +508,7 @@ public class TTValues:Mappable
     {
         valueLabel  <- map["valueLabel"]
         value       <- map["value"]
-        
+        label       <- map["label"]
         idValue     <- map["id"]
         countV      <- map["count"]
         sortOrder   <- map["sortOrder"]
@@ -477,6 +539,24 @@ public class TTRatingBreakdown:Mappable
     }
 }
 
+public class TTCreateOrden:Mappable
+{
+    public var id         : Int?
+    public var orderId     : String?
+    public var errors      : [TTErrorObject]?
+    
+    required public init?(map: Map)
+    {
+    }
+    public func mapping(map: Map)
+    {
+        id             <- map["id"]
+        orderId        <- map["code"]
+        errors         <- map["errors"]
+    }
+    
+}
+
 /*********
  Objetos, Errores
  *********************/
@@ -495,3 +575,4 @@ public class TTErrorObject:Mappable
         code        <- map["code"]
     }
 }
+

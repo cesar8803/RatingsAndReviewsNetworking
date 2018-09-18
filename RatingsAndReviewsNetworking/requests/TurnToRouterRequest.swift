@@ -9,6 +9,12 @@
 import Foundation
 import Alamofire
 
+public enum TurnToTypeRequest
+{
+    case listObject
+    case simpleObject
+}
+
 public enum TurnToRouterRequest:URLRequestConvertible
 {
     //AuthType
@@ -27,6 +33,11 @@ public enum TurnToRouterRequest:URLRequestConvertible
     case productList(params:TurnToGeneric)
     case ugcSummary(params:TurnToGeneric)
     case updateProduct(params:TurnToGeneric)
+    case search(params:TurnToGeneric)
+    case customFields(params:TurnToGeneric)
+    case createorders(params:TurnToGeneric)
+    
+    
     
     public func asURLRequest() throws -> URLRequest
     {
@@ -35,9 +46,9 @@ public enum TurnToRouterRequest:URLRequestConvertible
         {
             switch self
             {
-            case .accessToken,.invalidateAccessToken,.createReview,.voteUp,.voteDown,.markAsInappropiate,.updateProduct:
+            case .accessToken,.invalidateAccessToken,.createReview,.voteUp,.voteDown,.markAsInappropiate,.updateProduct,.createorders:
                 return .post
-            case .reviewsList, .reviewDetail,.settings,.productList,.ugcSummary:
+            case .reviewsList, .reviewDetail,.settings,.productList,.ugcSummary,.search,.customFields:
                 return .get
             }
         }
@@ -64,6 +75,12 @@ public enum TurnToRouterRequest:URLRequestConvertible
             case .ugcSummary(let params):
                 return params.getDict()
             case .updateProduct(let params):
+                return params.getDict()
+            case .search(let params):
+                return params.getDict()
+            case .customFields(let params):
+                return params.getDict()
+            case .createorders(let params):
                 return params.getDict()
             }
         }()
@@ -98,6 +115,12 @@ public enum TurnToRouterRequest:URLRequestConvertible
                 relativePath = TurnToContextService.ugcSummary.url
             case .updateProduct:
                 relativePath = TurnToContextService.updadteProduct.url
+            case .search:
+                relativePath = TurnToContextService.search.url
+            case .customFields:
+                relativePath = TurnToContextService.customFields.url
+            case .createorders:
+                relativePath = TurnToContextService.createorders.url
             }
             //
             var finalUrl = URL(string: TurnToConfig.sharedInstance.turntoEndpoint)!
@@ -118,7 +141,7 @@ public enum TurnToRouterRequest:URLRequestConvertible
         //
         let encoding: ParameterEncoding = {
             switch self {
-            case .createReview, .markAsInappropiate:
+            case .createReview, .markAsInappropiate, .createorders:
                 return JSONEncoding.default
             default:
                 return URLEncoding.default

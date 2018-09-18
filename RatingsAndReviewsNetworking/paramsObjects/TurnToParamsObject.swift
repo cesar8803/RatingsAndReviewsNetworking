@@ -32,7 +32,7 @@ public struct TurnToObjAccessToken:TurnToGeneric
     
     public func getDict() -> [String : Any]
     {
-        let dict:[String:Any] = [
+        let dict:[String:Any] =  [
             "client_id":        self.client_id,
             "client_secret":    self.client_secret,
             "grant_type":       self.grant_type
@@ -76,9 +76,16 @@ public struct TurnToObjAskSku:TurnToGeneric
     //Properties
     public var skuList  : [String]
     public var sku      : String
+    public var limit    : Int
+    public var offset   : Int
+    //
+    public var sort     : String?
     
-    public init(skuList:[String])
+    public init(skuList:[String], limit:Int=50, offset:Int=0)
     {
+        self.limit = limit
+        self.offset = offset
+        //
         self.sku = ""
         self.skuList = skuList
         //
@@ -92,9 +99,16 @@ public struct TurnToObjAskSku:TurnToGeneric
     
     public func getDict() -> [String : Any]
     {
-        let dict:[String:Any] = [
-            "sku": self.sku
+        var dict:[String:Any] = [
+            "sku": self.sku,
+            "limit": self.limit,
+            "offset": self.offset
         ]
+        //
+        if self.sort != nil
+        {
+            dict["sort"] = self.sort ?? "upVotes:desc"
+        }
         //
         return dict
     }
@@ -109,44 +123,78 @@ public struct TurnToObjCreateReview:TurnToGeneric
     public var rating                       : Int
     public var user                         : TurnToObjUser
     public var catalogItems                 : [TurnToObjCatalogItems]
+    public var title                        : String
+    public var text                         : String
+    public var dimensions                   : [TurnToObjDimensions]
     
     //optionals
     public var externalId                   : String?
     public var dateCreated                  : String?
-    public var title                        : String?
-    public var text                         : String?
     public var locale                       : String?
     public var acceptedTermsAndConditions   : String?
     public var userIpAddr                   : String?
     public var userAgent                    : String?
-    public var dimensions                   : [TurnToObjDimensions]?
     public var media                        : TurnToObjMedia?
     public var turntoTrackingToken          : String?
+    public var purchaseDate                 : String?
     
-    public init(rating:Int, user:TurnToObjUser, catalogItems:[TurnToObjCatalogItems])
+    public init(rating:Int, user:TurnToObjUser, catalogItems:[TurnToObjCatalogItems], title:String, text:String, dimensions:[TurnToObjDimensions])
     {
         self.rating = rating
         self.user = user
         self.catalogItems = catalogItems
+        self.title = title
+        self.text = text
+        self.dimensions = dimensions
         //
         self.externalId = nil
         self.dateCreated = nil
-        self.title = nil
-        self.text = nil
         self.locale = nil
         self.acceptedTermsAndConditions = nil
         self.userIpAddr = nil
         self.userAgent = nil
-        self.dimensions = nil
         self.media = nil
         self.turntoTrackingToken = nil
-        //
-        
+        self.purchaseDate = nil
     }
     
-    public func getDict() -> [String : Any] {
-        
-        return [:]
+    public func getDict() -> [String : Any]
+    {
+        var dict:[String:Any] = [
+            "autoModerated": false,
+            "published": false,
+            "rating": self.rating,
+            "text": self.text,
+            "title": self.title,
+            "user":self.user.getDict()
+        ]
+        //
+        if !self.catalogItems.isEmpty
+        {
+            dict["catalogItems"] = [self.catalogItems[0].getDict()]
+        }
+        //
+        var data:[[String:Any]] = []
+        for item in self.dimensions
+        {
+            data.append(item.getDict())
+        }
+        //
+        dict["dimensions"] = data
+        //
+        //"token":TurnToConfig.sharedInstance.token,
+        //"typeToken":TurnToConfig.sharedInstance.typeToken,
+        if self.media != nil
+        {
+            dict["media"] = self.media!.getDict()
+        }
+        //
+        if self.purchaseDate != nil
+        {
+            dict["purchaseDate"] = self.purchaseDate ?? "vacio"
+        }
+        //
+        return dict
     }
 }
 
@@ -163,12 +211,40 @@ public struct TurnToObjUser :TurnToGeneric
     public var city             : String?
     public var state            : String?
     public var country          : String?
-    public var ageRange         : Int!
+    public var ageRange         : Int?
     public var shopperProfiles  : [TurnToObjShopperProfiles]?
+    
+    public init(firstName:String, lastName:String)
+    {
+        self.firstName = firstName
+        self.lastName = lastName
+        //
+        self.nickName = nil
+        self.emailAddress = nil
+        self.externalId = nil
+        self.city = nil
+        self.state = nil
+        self.country = nil
+        self.ageRange = nil
+        self.shopperProfiles = nil
+    }
     
     public func getDict() -> [String : Any]
     {
-        return [:]
+        var dict:[String:Any] = [
+            "firstName": self.firstName,
+            "lastName": self.lastName
+        ]
+        //
+        if self.nickName != nil { dict["nickName"] = self.nickName! }
+        if self.emailAddress != nil { dict["emailAddress"] = self.emailAddress! }
+        if self.externalId != nil { dict["externalId"] = self.externalId! }
+        if self.city != nil { dict["city"] = self.city!}
+        if self.state != nil { dict["state"] = self.state }
+        if self.country != nil { dict["country"] = self.country }
+        if self.ageRange != nil { dict["ageRange"] = self.ageRange }
+        
+        return dict
     }
 }
 
@@ -186,25 +262,68 @@ public struct TurnToObjShopperProfiles:TurnToGeneric
 
 public struct TurnToObjDimensions:TurnToGeneric
 {
-    //optionals
-    public var valueDimension   : Int?
+    public var value        : Int
+    public var type         : Int
+    //
+    public var dimensionId  : Int?
+    
+    public init(value:Int, type:Int)
+    {
+        self.value = value
+        self.type = type
+        //
+        self.dimensionId = nil
+    }
     
     public func getDict() -> [String : Any]
     {
-        return [:]
+        var dict:[String:Any] = [
+            "value": self.value,
+            "type": self.type
+        ]
+        //
+        if self.dimensionId != nil
+        {
+            dict["dimensionId"] = self.dimensionId!
+        }
+        //
+        return dict
     }
 }
 
 public struct TurnToObjMedia:TurnToGeneric
 {
     //optionals
-    public var ids      : [Int]?
+    //public var ids      : [Int]?//ids no se manda porque ya no se utilizara
     public var photos   : [TurnToObjPhotos]?
-    public var videos   : [TurnToObjVideos]?
+    //public var videos   : [TurnToObjVideos]?//Videos no se manda porque ya no se utilizara
+    
+    public init() {}
     
     public func getDict() -> [String : Any]
     {
-        return [:]
+        var dict:[String:Any] = [
+            "video": [],
+            "audio": [],
+            "photo": []
+        ]
+        //
+        if self.photos != nil
+        {
+            if !self.photos!.isEmpty
+            {
+                var data:[[String:Any]] = []
+                //
+                for item in self.photos!
+                {
+                    data.append(item.getDict())
+                }
+                //
+                dict["photo"] = data
+            }
+        }
+        //
+        return dict
     }
 }
 
@@ -212,14 +331,31 @@ public struct TurnToObjPhotos:TurnToGeneric
 {
     //required
     public var b64data      : String
+    public var description  : String
+    public var id           : Int
     
     //optionals
-    public var caption      : String?
+    public var caption      : String
     
+    public init(b64data:String, description:String, id:Int)
+    {
+        self.b64data = b64data
+        self.description = description
+        self.id = id
+        //
+        self.caption = self.description
+    }
     
     public func getDict() -> [String : Any]
     {
-        return [:]
+        let dict:[String:Any] = [
+            "id": self.id,
+            "b64data": "data:image/png;base64,\(self.b64data)",
+            "description": self.description,
+            "caption": self.caption
+        ]
+        //
+        return dict
     }
 }
 
@@ -243,12 +379,103 @@ public struct TurnToObjCatalogItems:TurnToGeneric
     public var sku         : String
     
     //optionals
-    public var title       : String
-    public var url         : String
+    public var title       : String?
+    public var url         : String?
+    public var itemImageUrl: String?
+    
+    public init(sku:String)
+    {
+        self.sku = sku
+        self.title = nil
+        self.url = nil
+    }
     
     public func getDict() -> [String : Any]
     {
-        return [:]
+        var dict:[String:Any] = [
+            "sku": self.sku,
+            "averageRating": 0,
+            "ratingCount": 0,
+            "reviewCount": 0
+        ]
+        if self.itemImageUrl != nil { dict["itemImageUrl"] = self.itemImageUrl! }
+        if self.url != nil { dict["url"] = self.url! }
+        if self.title != nil { dict["title"] = self.title! }
+        //
+        return dict
+    }
+}
+
+/*********
+ Este aplica para el servicio de Search
+ *******************/
+public struct TurnToObjSearch:TurnToGeneric
+{
+    //Properties
+    public var word     : String
+    public var sku      : String
+    public var limit    : Int
+    public var offset   : Int
+    public var sort     : String?
+    
+    
+    public init(word:String,sku:String, limit:Int=50, offset:Int=0)
+    {
+        self.limit = limit
+        self.offset = offset
+        self.sku = sku
+        self.word = word
+        //
+        self.sort = nil
+    }
+    
+    public func getDict() -> [String : Any]
+    {
+        var dict:[String:Any] = [
+            "q": self.word,
+            "sku": self.sku,
+            "limit": self.limit,
+            "offset": self.offset,
+            "ugcType":"review",
+            "publishedOnly":"true"
+        ]
+        //
+        if self.sort != nil
+        {
+            dict["sort"] = self.sort!
+        }
+        //
+        return dict
+    }
+}
+
+
+/*********
+ Este aplica para el servicio de CustomFields
+ *******************/
+public struct TurnToObjCustomFields:TurnToGeneric
+{
+    //Properties
+   
+    public var sku      : String
+    
+    
+    public init(sku:String)
+    {
+       
+        self.sku = sku
+      
+    }
+    
+    public func getDict() -> [String : Any]
+    {
+        let dict:[String:Any] = [
+            
+            "sku": self.sku
+            
+        ]
+        //
+        return dict
     }
 }
 
@@ -265,131 +492,39 @@ public struct TurnToUpdateProduct:TurnToGeneric
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*********
+ Objeto para crear una orden
+ *******************/
+public struct TurnToObjCreateOrder:TurnToGeneric
+{
+    public var orderId                      : String
+    public var user                         : TurnToObjUser
+    public var catalogitems                        : [TurnToObjCatalogItems]
+//    public var items                        : [Tu]
+    
+    public init(orderId:String, user:TurnToObjUser, items:[TurnToObjCatalogItems])
+    {
+        self.orderId = orderId
+        self.user = user
+        self.catalogitems = items
+    }
+    
+    
+    public func getDict() -> [String : Any] {
+        var dict:[String:Any] = [
+            "orderId":self.orderId,
+            "user":self.user.getDict()
+        ]
+        if !self.catalogitems.isEmpty
+        {
+            var data:[[String:Any]] = []
+            for item in self.catalogitems
+            {
+                data.append(item.getDict())
+            }
+            //
+            dict["items"] = data
+        }
+        return dict
+    }
+}
