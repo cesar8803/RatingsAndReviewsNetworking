@@ -3,8 +3,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 def shared_pods
-    pod 'Alamofire', '~> 4.0'
-    pod 'AlamofireObjectMapper', '~> 4.0'
+    pod 'Alamofire', '~> 4.7.3'
+    pod 'AlamofireObjectMapper', '~> 5.1.0'
 end
 
 target 'RatingsAndReviewsNetworking' do
