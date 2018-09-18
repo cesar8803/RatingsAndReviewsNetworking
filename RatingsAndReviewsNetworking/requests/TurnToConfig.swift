@@ -8,7 +8,7 @@
 
 import Foundation
 
-//CONTEXT
+//CONTEXT IGC
 internal enum TurnToContextService
 {
     case accessToken
@@ -23,6 +23,9 @@ internal enum TurnToContextService
     case productList
     case ugcSummary
     case updadteProduct
+    case search
+    case customFields
+    case createorders
     
     internal var url:String
     {
@@ -52,6 +55,13 @@ internal enum TurnToContextService
             return "/#version#/products/ugc_summary"
         case .updadteProduct:
             return "/#version#/products"
+        case .search:
+            return "/#version#/search"
+        case .customFields:
+           return "/#version#/products"
+        case .createorders:
+            return "/#version#/orders/create"
+            
         }
     }
 }
@@ -60,15 +70,17 @@ public class TurnToConfig
 {
     public static let sharedInstance = TurnToConfig()
     
-    private var _turntoApiVersion       : String = "v1.1"
+    private var _turntoApiVersion       : String = "v1.2"
     private var _turntoEndpoint         : String = "https://api.turnto.com"
     private var _timeOutInterval        : Double = 60.0
     private var _headerField            : String = "Authorization"
     private var _accesApiToken          : String = "bearer LSZVtMUo183hGgNiNPaoVRz96iERW1P364gs"
+    private var _token                  : String = "LSZVtMUo183hGgNiNPaoVRz96iERW1P364gs"
+    private var _typeToken              : String = "bearer"
     //
     //Valores Constantes proporcionados por TurnTo para obtener Token
-    private var _client_id              : String = "euMikXTjfROYykrsite"
-    private var _client_secret          : String = "xxU5qQRa7DcL53T5W65YvfdryLuCauth"
+    private var _client_id              : String = "xxxxxxxxxx"
+    private var _client_secret          : String = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     private var _grant_type             : String = "client_credentials"
     private var _max_try_get_request    : Int = 2
     
@@ -136,6 +148,26 @@ public class TurnToConfig
         }
         get{
             return _accesApiToken
+        }
+    }
+    
+    public var token:String
+    {
+        set{
+            _token = newValue
+        }
+        get{
+            return _token
+        }
+    }
+    
+    public var typeToken:String
+    {
+        set{
+            _typeToken = newValue
+        }
+        get{
+            return _typeToken
         }
     }
     
