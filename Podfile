@@ -4,7 +4,7 @@ use_frameworks!
 
 def shared_pods
     pod 'Alamofire', '~> 4.7.3'
-    pod 'AlamofireObjectMapper', '~> 5.1.0'
+    pod 'AlamofireObjectMapper', '~> 5.2'
 end
 
 target 'RatingsAndReviewsNetworking' do
