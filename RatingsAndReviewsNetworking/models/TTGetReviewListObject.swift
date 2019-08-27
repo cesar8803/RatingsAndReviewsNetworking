@@ -226,6 +226,7 @@ public class TTDimensionsP:Mappable
     public var values          : [TTValues]?
     public var sortOrder       : Int?
     public var required        : Bool?
+    public var average         : Float? = 0.0
     //
     public var isSelected      : Bool = false
     
@@ -241,6 +242,7 @@ public class TTDimensionsP:Mappable
         values          <- map["values"]
         sortOrder       <- map["sortOrder"]
         required        <- map["required"]
+        average         <- map["average"]
     }
 }
 
